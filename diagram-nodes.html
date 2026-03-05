@@ -1,0 +1,541 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Nodes - Crossflow Handbook</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-020e3b3e.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-df95dbe7.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Crossflow Handbook</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="nodes"><a class="header" href="#nodes">Nodes</a></h1>
+<p>You will typically need to supply your <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.DiagramElementRegistry.html">registry</a> with node builders in order to execute any useful JSON diagrams.
+The registry will maintain a dictionary of the node builders that you give to it.
+When a diagram is built into a workflow, the registered node builders will be used to construct the workflow.</p>
+<p>This page will teach you all the details of how to register node builders.</p>
+<h3 id="node-builder-options"><a class="header" href="#node-builder-options">Node Builder Options</a></h3>
+<p>Each time you register a node builder you will need to set its <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.NodeBuilderOptions.html"><code>NodeBuilderOptions</code></a>.
+The only <em>required</em> field in <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.NodeBuilderOptions.html"><code>NodeBuilderOptions</code></a> is the <code>id</code>:</p>
+<pre><code class="language-rust no_run noplayground">let options = NodeBuilderOptions::new("multiply_by");</code></pre>
+<h4 id="display-text"><a class="header" href="#display-text">Display Text</a></h4>
+<p>This ID must be unique for each node builder added to the registry.
+Registering a second node builder with the same ID as an earlier one will remove the earlier one from the registry.</p>
+<p>When you only provide the ID, graphical editors will typically use that ID as display text for its associated nodes when visualizing a diagram.
+This isn’t always a good idea since the unique ID could be an unintelligible UUID, or it could be mangled with namespaces or version numbers.
+Instead you can add a default display text to the node builder options:</p>
+<pre><code class="language-rust no_run noplayground">let options = NodeBuilderOptions::new("multiply_by")
+    .with_default_display_text("Multiply By");</code></pre>
+<p>The <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.DiagramElementRegistry.html">diagram element registry</a> can be serialized into JSON and exported from the executor.
+The serialized registry data can be provided to a diagram editor or visualization frontend, which can then look up the display text and render it to the user.</p>
+<h4 id="description"><a class="header" href="#description">Description</a></h4>
+<p>When someone is manually editing or viewing a workflow diagram, the purpose of a node might not be obvious from the ID or the display text.
+Therefore your node builder options can also include a description for the nodes that will be built:</p>
+<pre><code class="language-rust no_run noplayground">let description = "Multiply the input value by the configured value.";
+
+let options = NodeBuilderOptions::new("multiply_by")
+    .with_default_display_text("Multiply By")
+    .with_description(description);</code></pre>
+<p>Similar to the display text, the description will be included in the serialized <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.DiagramElementRegistry.html">registry</a>, allowing diagram editors or visualizers to render the description for each node.</p>
+<h3 id="closure"><a class="header" href="#closure">Closure</a></h3>
+<p>Along with the node builder options, you need to provide a closure when registering a node builder.
+The closure is what does the heavy lifting of creating the node for the workflow.
+It will be provided with two arguments: a <a href="https://docs.rs/crossflow/latest/crossflow/builder/struct.Builder.html"><code>&amp;mut Builder</code></a> and a <code>config</code>.</p>
+<p>The <a href="https://docs.rs/crossflow/latest/crossflow/builder/struct.Builder.html"><code>Builder</code></a> API allows your closure to create <em>any</em> kind of node.
+You can use it to call <a href="https://docs.rs/crossflow/latest/crossflow/builder/struct.Builder.html#method.create_map_block"><code>create_map_block</code></a> or <a href="https://docs.rs/crossflow/latest/crossflow/builder/struct.Builder.html#method.create_map_async"><code>create_map_async</code></a> for simple functions.
+For services or callbacks you can call <a href="https://docs.rs/crossflow/latest/crossflow/builder/struct.Builder.html#method.create_node"><code>create_node</code></a>.</p>
+<p>If you need to spawn a service within the closure, you can use <a href="https://docs.rs/crossflow/latest/crossflow/builder/struct.Builder.html#method.commands"><code>Builder::commands</code></a> to get a <a href="https://docs.rs/bevy/latest/bevy/prelude/struct.Commands.html"><code>&amp;mut Commands</code></a>.
+Just keep in mind that <strong>services do <em>not</em> get automatically despawned when no longer used</strong>, so you should avoid spawning a new service for each node that gets created.
+Unless you do something to periodically clean up those services, you could end up with an arbitrarily growing number of services in your executor.</p>
+<blockquote class="blockquote-tag blockquote-tag-tip">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
+<p>The closure is expected to be <a href="https://doc.rust-lang.org/std/ops/trait.FnMut.html"><code>FnMut</code></a>, which means you can cache data inside of it that can be reused or updated each time the closure gets run.</p>
+</blockquote>
+<p>The return type of your closure must be <a href="https://docs.rs/crossflow/latest/crossflow/node/struct.Node.html"><code>Node&lt;Request, Response, Streams&gt;</code></a>.
+That happens to be the return type of <a href="https://docs.rs/crossflow/latest/crossflow/builder/struct.Builder.html#method.create_map_block"><code>create_map_block</code></a>, <a href="https://docs.rs/crossflow/latest/crossflow/builder/struct.Builder.html#method.create_map_async"><code>create_map_async</code></a>, and <a href="https://docs.rs/crossflow/latest/crossflow/builder/struct.Builder.html#method.create_node"><code>create_node</code></a>, so your entire closure could be as simple as calling one of those methods on <a href="https://docs.rs/crossflow/latest/crossflow/builder/struct.Builder.html"><code>Builder</code></a>:</p>
+<pre><code class="language-rust no_run noplayground">registry.register_node_builder(
+    NodeBuilderOptions::new("add"),
+    |builder, config: f32| {
+        builder.create_map_block(move |request: f32| {
+            request + config
+        })
+    }
+);</code></pre>
+<p>The <code>Request</code>, <code>Response</code>, and <code>Streams</code> of the <a href="https://docs.rs/crossflow/latest/crossflow/node/struct.Node.html"><code>Node</code></a> that you return will be automatically detected by the registry.
+They will be recorded as the input, output, and stream message types for nodes created by your node builder.</p>
+<p>Technically the closure is not limited to only creating a single node.
+You could have the closure additionally create buffers or anything else, as long as the final return value is a <a href="https://docs.rs/crossflow/latest/crossflow/node/struct.Node.html"><code>Node</code></a>.
+But it falls on you to ensure that the connected collection of elements that your closure builds can operate similar to a node, or else it may inflict confusing behavior on users and visualization tools.</p>
+<blockquote class="blockquote-tag blockquote-tag-tip">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
+<p>If you need to generate something more complex than a simple <a href="https://docs.rs/crossflow/latest/crossflow/node/struct.Node.html"><code>Node</code></a>, consider registering a <a href="./diagram-sections.html">section builder</a> instead.</p>
+</blockquote>
+<h4 id="config"><a class="header" href="#config">Config</a></h4>
+<p>Each node builder can decide on its own <code>config</code> data structure.
+This <code>config</code> will be the second argument passed to the closure.
+In the earlier example the <code>config</code> data structure is a simple floating point value, <code>f32</code>.
+Any type that implements <a href="https://docs.rs/serde/latest/serde/trait.Deserialize.html"><code>Deserialize</code></a> and <a href="https://docs.rs/schemars/latest/schemars/trait.JsonSchema.html"><code>JsonSchema</code></a> can be used as a <code>config</code> type.</p>
+<p>For complex node configurations, you can define your own custom struct and derive the necessary traits:</p>
+<pre><code class="language-rust no_run noplayground">/// A custom node builder config for a greeting node
+#[derive(Deserialize, JsonSchema)]
+struct GreetConfig {
+    /// How should the person be greeted?
+    greeting: String,
+    /// Should the greeting be printed out?
+    print: bool,
+}
+
+registry.register_node_builder(
+    NodeBuilderOptions::new("greet"),
+    |builder, config: GreetConfig| {
+        let GreetConfig { greeting, print } = config;
+        builder.create_map_block(
+            move |name: String| {
+                let message = format!("{greeting}{name}");
+                if print {
+                    println!("{message}");
+                }
+
+                message
+            }
+        )
+    }
+);</code></pre>
+<p>Deriving <a href="https://docs.rs/schemars/latest/schemars/trait.JsonSchema.html"><code>JsonSchema</code></a> for the config type allows us to <strong>save a schema for the config in the registry</strong>.
+This helps graphical editing tools and diagram generation tools to ensure that all the nodes have valid configurations.
+You could even auto-generate UIs tailored to the config of each node builder.</p>
+<blockquote class="blockquote-tag blockquote-tag-tip">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
+<p>If your node builder doesn’t need any <code>config</code> information then just use the unit-type <code>()</code> as the config type.</p>
+</blockquote>
+<h5 id="examples"><a class="header" href="#examples">Examples</a></h5>
+<p>Despite being provided with a config schema, human users may still struggle to figure out how to correctly configure a node to get what they want out of it.
+To mitigate this problem, you can provide example configurations in your node builder options:</p>
+<pre><code class="language-rust no_run noplayground">use crossflow::{prelude::*, ConfigExample};
+use serde::{Serialize, Deserialize};
+
+/// A custom node builder config for a greeting node
+#[derive(Serialize, Deserialize, JsonSchema)]
+struct GreetConfig {
+    /// How should the person be greeted?
+    greeting: String,
+    /// Should the greeting be printed out?
+    print: bool,
+}
+
+let examples = vec![
+    ConfigExample::new(
+        "Say hello and print the message",
+        GreetConfig {
+            greeting: String::from("Hello, "),
+            print: true,
+        }
+    ),
+    ConfigExample::new(
+        "Say guten tag and do not print the message",
+        GreetConfig {
+            greeting: String::from("Guten tag "),
+            print: false,
+        }
+    ),
+];
+
+registry.register_node_builder(
+    NodeBuilderOptions::new("greet")
+        .with_description("Turn a name into a greeting")
+        .with_config_examples(examples),
+    |builder, config: GreetConfig| {
+        let GreetConfig { greeting, print } = config;
+        builder.create_map_block(
+            move |name: String| {
+                let message = format!("{greeting}{name}");
+                if print {
+                    println!("{message}");
+                }
+
+                message
+            }
+        )
+    }
+);</code></pre>
+<p>Crossflow graphical editing tools are encouraged to make these examples visible to users, and allow users to copy/paste the examples.</p>
+<blockquote class="blockquote-tag blockquote-tag-tip">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
+<p>If you want something more flexible than a static struct for your config, you can always just use <a href="https://docs.rs/crossflow/latest/crossflow/buffer/enum.JsonMessage.html"><code>JsonMessage</code></a> as the config type.
+Just be sure to include comprehensive examples so human users know what a valid config would be.</p>
+</blockquote>
+<h4 id="fallible"><a class="header" href="#fallible">Fallible</a></h4>
+<p>There might be cases where a node builder cannot successfully build a node.
+Maybe there is a semantic error in the <code>config</code> (even though the parsing was successful), or maybe some resource needed by the builder has become unavailable.</p>
+<p>The node builder API above assumes that building the node will always be successful.
+To allow the node building to fail, you can use the fallible API instead:</p>
+<pre><code class="language-rust no_run noplayground">use anyhow::anyhow;
+registry.register_node_builder_fallible(
+    NodeBuilderOptions::new("divide_by"),
+    |builder, config: f64| {
+        if config == 0.0 {
+            return Err(anyhow!("Cannot divide by zero"));
+        }
+
+        let node = builder.create_map_block(move |request: f64| request / config);
+        Ok(node)
+    }
+);</code></pre>
+<p>You can return any error that can be converted into an <a href="https://docs.rs/anyhow/latest/anyhow/struct.Error.html"><code>anyhow::Error</code></a>.
+The easiest option is to use the <a href="https://docs.rs/anyhow/latest/anyhow/macro.anyhow.html"><code>anyhow!</code></a> macro.</p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>If the <code>"config"</code> in the diagram cannot be successfully deserialized into the data structure of your closure’s <code>config</code>, this will be automatically caught by the registry, and a <a href="https://docs.rs/crossflow/latest/crossflow/diagram/enum.DiagramErrorCode.html#variant.ConfigError"><code>ConfigError</code></a> will be returned instead of a <code>Service</code>.
+Your node builder does not have to handle this error mode.</p>
+</blockquote>
+<h3 id="message-operation-support"><a class="header" href="#message-operation-support">Message Operation Support</a></h3>
+<p>When you use <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.DiagramElementRegistry.html#method.register_node_builder"><code>register_node_builder</code></a> from <code>DiagramElementRegistry</code>, the message types of <code>Request</code>, <code>Response</code>, and <code>Streams</code> will automatically be registered.
+By default all registered messages will also register the ability to serialize, deserialize, and clone, which allows those message types to support operations like <a href="./parallelism.html#clone">fork-clone</a> and conversion to/from <a href="https://docs.rs/crossflow/latest/crossflow/buffer/enum.JsonMessage.html"><code>JsonMessage</code></a>.</p>
+<p>For certain message types there may be additional operations that can be performed on them.
+For example if a node returns a <a href="https://doc.rust-lang.org/std/result/"><code>Result</code></a> type then users should be able to apply a <a href="./branching.html">fork-result</a> to it.
+A tuple message should be able to <a href="./parallelism.html#unzip">unzip</a>.
+Unfortunately the Rust programming language does not yet support <a href="https://std-dev-guide.rust-lang.org/policy/specialization.html">specialization</a> as a stable feature.
+To get around this, the <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.DiagramElementRegistry.html"><code>register_node_builder</code></a> returns a <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.NodeRegistrationBuilder.html"><code>NodeRegistrationBuilder</code></a> that lets you register support for additional operations.</p>
+<p>At the end of registering a node, you can chain support for additional operators:</p>
+<pre><code class="language-rust no_run noplayground">/// A request to get some information from a web page.
+///
+/// We implement Joined so this struct can be created by the join operation.
+///
+/// We implement Clone, Serialize, Deserialize, and JsonSchema so this struct
+/// can support the default message operations.
+#[derive(Joined, Clone, Serialize, Deserialize, JsonSchema)]
+struct WebPageQuery {
+    url: String,
+    element: String,
+}
+
+registry
+    .register_node_builder(
+        NodeBuilderOptions::new("get_url_header"),
+        |builder, config: ()| {
+            builder.create_map_async(|query: WebPageQuery| {
+                async move {
+                    let page = fetch_content_from_url(query.url).await?;
+                    page
+                        .get(&amp;query.element)
+                        .cloned()
+                        .ok_or_else(|| FetchError::ElementMissing(query.element))
+                }
+            })
+        }
+    )
+    .with_join()
+    .with_result();</code></pre>
+<p>In the above example <code>WebPageQuery</code> implements the <code>Joined</code> trait, which means it can be the output of a <a href="./using-buffers.html#joining">join</a> operation.
+To register that ability for the message, we chain <code>.with_join()</code> after <code>.register_node_builder()</code>.</p>
+<p>At the same time the return type of node is a <a href="https://doc.rust-lang.org/std/result/"><code>Result</code></a>.
+We can also chain <code>.with_result()</code> to register <a href="./branching.html">fork-result</a> support for the node’s output message type.</p>
+<p>When adding support for an operation, the message we are adding support for must be compatible with the operation.
+This is ensured by the compiler.
+If the node in the example above were not returning a <a href="https://doc.rust-lang.org/std/result/"><code>Result</code></a> type then the Rust compiler would emit a compilation error when we try to register <code>.with_result()</code> for it.</p>
+<p>Each operation support that we add using <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.NodeRegistrationBuilder.html"><code>NodeRegistrationBuilder</code></a> will only apply to either the input message type or the output message type depending on whether the operation would produce the message or consume the message, respectively.</p>
+<p>For finer grain control over exactly what operations are registered for each message type, continue to the next section.</p>
+<h3 id="special-case-message-registration"><a class="header" href="#special-case-message-registration">Special-case Message Registration</a></h3>
+<p>In most cases your messages types and their supported operations can be registered as described above—by registering a node and then chaining on any additional operations needed by the messages.
+However there are some special cases that don’t quite fit that pattern.</p>
+<h4 id="opt-out"><a class="header" href="#opt-out">opt-out</a></h4>
+<p>Crossflow diagrams <em><strong>can</strong></em> support message types that don’t implement clone or support serialization/deserialization.
+By default the node registration API will assume that your node’s messages <em><strong>do</strong></em> support all of those traits, because those are very typical traits for “<a href="https://en.wikipedia.org/wiki/Passive_data_structure">plain old data</a>” types.
+We think if those operations weren’t registered by default, there is a high likelihood that users would forget to register the operations, so by default we try to register them.</p>
+<p>If your node produces or consumes messages that are not <a href="https://en.wikipedia.org/wiki/Passive_data_structure">plain old data</a>, you will need to explicitly opt out of some traits in order to register the node builder.
+If you forget to opt-out of the default operations for message types that don’t support them, you’ll see a compilation error.</p>
+<p>Here’s an example of a node with an input value that supports none of the default operations:</p>
+<pre><code class="language-rust no_run noplayground">use tokio::sync::mpsc::UnboundedReceiver;
+registry
+    .opt_out()
+    .no_cloning()
+    .no_serializing()
+    .no_deserializing()
+    .register_node_builder(
+        NodeBuilderOptions::new("stream_out"),
+        |builder, config: ()| {
+            builder.create_map(|input: Async&lt;UnboundedReceiver&lt;f32&gt;, StreamOf&lt;f32&gt;&gt;| {
+                async move {
+                    let mut receiver = input.request;
+                    let stream = input.streams;
+
+                    while let Some(msg) = receiver.recv().await {
+                        stream.send(msg);
+                    }
+                }
+            })
+        }
+    )
+    .with_common_response();</code></pre>
+<p>The <a href="https://docs.rs/tokio/latest/tokio/sync/mpsc/struct.UnboundedReceiver.html"><code>UnboundedReceiver</code></a> does not support serialization, deserialization, or even cloning.
+To register this node builder, we first need to use <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.DiagramElementRegistry.html#method.opt_out"><code>.opt_out()</code></a> and then specify</p>
+<ul>
+<li><a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.CommonOperations.html#method.no_cloning"><code>.no_cloning()</code></a></li>
+<li><a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.CommonOperations.html#method.no_serializing"><code>.no_serializing()</code></a></li>
+<li><a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.CommonOperations.html#method.no_deserializing"><code>.no_deserializing()</code></a></li>
+</ul>
+<p>With those opted out, we can use the <a href="https://docs.rs/tokio/latest/tokio/sync/mpsc/struct.UnboundedReceiver.html"><code>UnboundedReceiver</code></a> as a message in the node.</p>
+<p>To opt back into the default operations for the response, we apply <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.NodeRegistrationBuilder.html#method.with_common_response"><code>.with_common_response()</code></a>.
+A similar method exists if we were opting back in for the <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.NodeRegistrationBuilder.html#method.with_common_request">request type instead</a>.</p>
+<h4 id="streams"><a class="header" href="#streams">Streams</a></h4>
+<p>Registering additional operations for request and response message types is fairly straightforward, but there isn’t a clean way to do this for the message types that are present in output streams.
+If you have output streams that produce custom data structures, they will be registered with the default message operations (unless you <a href="#opt-out">opted out</a>), but to register any additional operations for those types, you will need to do it directly.</p>
+<p>Instead of using the <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.NodeRegistrationBuilder.html"><code>NodeRegistrationBuilder</code></a> API, you will need to use <a href="https://docs.rs/crossflow/latest/crossflow/diagram/struct.DiagramElementRegistry.html#method.register_message"><code>register_message</code></a>:</p>
+<pre><code class="language-rust no_run noplayground">#[derive(Clone, Serialize, Deserialize, JsonSchema)]
+struct State {
+    position: [f32; 2],
+    battery_level: f32,
+}
+
+#[derive(Clone, Serialize, Deserialize, JsonSchema)]
+enum Error {
+    LostConnection
+}
+
+registry
+    .register_node_builder(
+        NodeBuilderOptions::new("navigate_to"),
+        |builder, config: ()| {
+            builder.create_map(
+                |srv: Async&lt;[f32; 2], StreamOf&lt;Result&lt;State, Error&gt;&gt;&gt;| {
+                    async move {
+                        let destination = srv.request;
+                        let stream = srv.streams;
+
+                        let mut update_receiver = navigate_to(destination);
+                        while let Some(update) = update_receiver.recv().await {
+                            stream.send(update);
+                        }
+                    }
+                }
+            )
+        }
+    );
+
+// Explicitly register the message of the stream so we can add .with_result to it.
+registry
+    .register_message::&lt;Result&lt;State, Error&gt;&gt;()
+    .with_result();</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="diagram-execution.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="diagram-section-builders.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="diagram-execution.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="diagram-section-builders.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

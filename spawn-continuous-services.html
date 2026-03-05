@@ -1,0 +1,639 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Continuous Services - Crossflow Handbook</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-020e3b3e.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-df95dbe7.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Crossflow Handbook</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="continuous-services"><a class="header" href="#continuous-services">Continuous Services</a></h1>
+<p>Most of the time a service can be written as a <a href="./spawn-services.html#spawn-a-blocking-service">blocking service</a>
+or an <a href="./spawn-async-services.html#spawn-an-async-service">async service</a> depending on
+whether the service is known to be short-lived or long-lived and whether it needs
+to use the async feature of Rust. But there’s one more shape a service can take
+on: continuous.</p>
+<p>One thing that blocking and async services share in common is that they are each
+defined by a function that takes in a request as an argument and eventually yields
+a response. On the other hand a <strong>continuous service</strong> is defined by a Bevy system
+that runs continuously in the <a href="https://bevy-cheatbook.github.io/programming/schedules.html">system schedule</a>. Each time the
+continuous service is woken up in the schedule, it can make some incremental
+progress on the set of active requests assigned to it—which we call the order queue.</p>
+<h3 id="what-is-a-continuous-service"><a class="header" href="#what-is-a-continuous-service">What is a Continuous Service?</a></h3>
+<p>Each service—whether blocking, async, or continuous—is associated with a
+unique <a href="https://docs.rs/bevy/latest/bevy/prelude/struct.Entity.html">Entity</a> that we refer to as the <strong>service provider</strong>. For blocking
+and async services the main purpose of the service provider is to</p>
+<ol>
+<li>store the system that implements the service, and</li>
+<li>allow users to configure the service by inserting components on the <em>service provider</em> entity.</li>
+</ol>
+<p>For continuous services the service provider has one additional purpose: to store
+the <strong>order queue</strong> component. This component is used to keep track of its active
+requests—i.e. the requests aimed at the continuous service which have not received
+a response yet. When a request for the continuous service shows up, <code>flush_execution</code>
+will send that request into the <em>order queue</em> component of the service that it’s
+meant for.</p>
+<p><img src="./assets/figures/continuous-service-schedule.svg" alt="continuous-service-schedule"></p>
+<p>Each continuous service will be run in the regular Bevy <a href="https://bevy-cheatbook.github.io/programming/schedules.html">system schedule</a>
+just like every regular Bevy system in the application. This means continuous
+services can run in parallel to each other, as well as run in parallel to all
+other regular Bevy systems, as long as there are no read/write conflicts in what
+the systems need to access.</p>
+<p>Each time a continuous service is woken up by the schedule, it should check its
+<em>order queue</em> component and look through any active requests it has. It should
+try to make progress on those tasks according to whatever its intended behavior
+is—perhaps try to complete one at a time or try to complete all of them at once.
+There is no requirement to complete any number of the orders on any given wakeup.
+There is no time limit or iteration limit for completing any orders. Any orders
+that do not receive a response will simply carry over to the next schedule update.</p>
+<p>Once an order <em>is</em> complete, the continuous service can issue a response to it.
+After issuing a response, the request of the order will immediately become
+inaccessible, even within the current update cycle. Responding to an order will
+fully drop the order from the perspective of the continuous service. This prevents
+confusion that might otherwise lead to accidentally sending two responses for the
+same order. Nevertheless the continuous service can respond to <em>any number</em> of
+unique orders within a single update cycle.</p>
+<h3 id="spawn-a-continuous-service"><a class="header" href="#spawn-a-continuous-service">Spawn a Continuous Service</a></h3>
+<p>Spawning a continuous service has some crucial differences from spawning a blocking
+or an async service. These differences come from two facts:</p>
+<ol>
+<li>The request information (order queue) persists between service updates as a component</li>
+<li>The service needs to be added to the app’s system schedule</li>
+</ol>
+<p>This first difference means that <strong>continuous services <em>must</em> query for their order queue</strong>.
+In the <code>hello_continuous_service</code> example below you can see the <code>query</code> argument
+takes in a <code>ContinuousQuery</code> whose generic parameters perfectly match the generic
+parameters of <code>ContinuousService</code> above it. This pattern is mandatory for
+continuous services so they can access their order queue.</p>
+<pre><code class="language-rust no_run noplayground">fn hello_continuous_service(
+    srv: ContinuousService&lt;String, String&gt;,
+    mut query: ContinuousQuery&lt;String, String&gt;,
+) {
+    let Some(mut orders) = query.get_mut(&amp;srv.key) else {
+        // The service provider has despawned, so we can no longer do anything
+        return;
+    };
+
+    orders.for_each(|order| {
+        let name = order.request();
+        let response = format!("Hello, {name}!");
+        order.respond(response);
+    });
+}</code></pre>
+<p>Unlike other service types, the <code>srv</code> input arguments contains nothing but a <code>key</code>
+that must be used by <code>query</code> to access the orders belonging to this service. This
+access is fallible because it’s possible for a user or a system to despawn the
+provider of this service while the service is still inside the system schedule.
+In most cases when the order queue can no longer be accessed, your continuous
+service can just return immediately. Any requests sent to it will be automatically
+cancelled.</p>
+<p>When you do get access to your orders—in this case through the <code>orders</code> variable—you can iterate
+through each order, using <code>.request()</code> to borrow the request value and then
+<code>.respond(_)</code> to send your response for the order.</p>
+<h4 id="inside-the-system-schedule"><a class="header" href="#inside-the-system-schedule">Inside the System Schedule</a></h4>
+<p>The other important difference with continuous services is that they need to be
+added to the app’s <a href="https://bevy-cheatbook.github.io/programming/schedules.html">system schedule</a>. While blocking and async services
+can be spawned anywhere that you have access to a <code>Commands</code>, continuous services
+can only be spawned when you have access to an <code>App</code>:</p>
+<pre><code class="language-rust no_run noplayground">let continuous_service: Service&lt;String, String&gt; = app.spawn_continuous_service(
+    Update,
+    hello_continuous_service
+);</code></pre>
+<p>Instead of <code>spawn_service</code> which gets used by blocking and async services,
+continuous services require you to call <code>spawn_continuous_service</code>. You’ll also
+notice that an additional argument is needed here: the label for which schedule
+the continuous service should run in.</p>
+<blockquote class="blockquote-tag blockquote-tag-note">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p>
+<p>Currently Bevy does not support dynamically adding systems to the schedule,
+so continuous services will generally need to be added during App startup.</p>
+</blockquote>
+<p>Despite these differences in how continuous services get spawned, you will still
+ultimately receive a <code>Service&lt;Request, Response&gt;</code>, exactly the same as blocking
+and async services. From the outside, continuous services appear no different
+from other kinds of service; the differences in how it behaves are just
+implementation details.</p>
+<h3 id="serial-orders"><a class="header" href="#serial-orders">Serial Orders</a></h3>
+<p>In the <code>hello_continuous_service</code> <a href="#spawn-a-continuous-service">example above</a>
+we respond to each request on the same update frame that the request arrives.
+Very often continuous services are managing a process that needs to be spread out
+across multiple frames. The example below shows an example of responding to a
+sequence of orders, one at a time, where each order might need multiple frames
+before it’s complete.</p>
+<pre><code class="language-rust no_run noplayground">#[derive(Resource, Deref, DerefMut)]
+struct Position(Vec2);
+
+#[derive(Component, Deref)]
+struct Speed(f32);
+
+fn move_base_vehicle_to_target(
+    srv: ContinuousService&lt;Vec2, Result&lt;(), ()&gt;&gt;,
+    mut query: ContinuousQuery&lt;Vec2, Result&lt;(), ()&gt;&gt;,
+    speeds: Query&lt;&amp;Speed&gt;,
+    mut base_position: ResMut&lt;Position&gt;,
+    time: Res&lt;Time&gt;,
+) {
+    let Some(mut orders) = query.get_mut(&amp;srv.key) else {
+        // The service provider has been despawned, so this continuous service
+        // can no longer function.
+        return;
+    };
+
+    // Get the oldest active request for this service. Orders will be indexed
+    // from 0 to N-1 from oldest to newest. When an order is completed, all
+    // orders after it will shift down by an index on the next update cycle.
+    let Some(order) = orders.get_mut(0) else {
+        // There are no active requests, so no need to do anything
+        return;
+    };
+
+    let dt = time.delta_secs_f64() as f32;
+    let Ok(speed) = speeds.get(srv.key.provider()) else {
+        // The velocity setting has been taken from the service, so it can no
+        // longer complete requests.
+        order.respond(Err(()));
+        return;
+    };
+
+    let target = *order.request();
+    match move_to(**base_position, target, **speed, dt) {
+        Ok(_) =&gt; {
+            // The vehicle arrived
+            **base_position = target;
+            println!("Base vehicle arrived at {target}");
+            order.respond(Ok(()));
+        }
+        Err(new_position) =&gt; {
+            // The vehicle made progress but did not arrive
+            **base_position = new_position;
+        }
+    }
+}</code></pre>
+<p>On each update of the continuous service we only look at the oldest request in
+the order queue, ignoring all others. This effectively makes the service “serial”
+meaning no matter how many requests are coming in to it, they will only be handled
+one at a time.</p>
+<h3 id="parallel-orders"><a class="header" href="#parallel-orders">Parallel Orders</a></h3>
+<p>One of the advantages that continuous services have over blocking and async is
+the ability to handle many requests at once, potentially with interactions
+happening between them. The example below shows how <code>orders.for_each(_)</code> can be
+used to iterate over all active requests in one update frame, making incremental
+progress on all of them at once.</p>
+<pre><code class="language-rust no_run noplayground">#[derive(Clone, Copy)]
+struct DroneRequest {
+    target: Vec2,
+    speed: f32,
+}
+
+fn send_drone_to_target(
+    srv: ContinuousService&lt;DroneRequest, ()&gt;,
+    mut query: ContinuousQuery&lt;DroneRequest, ()&gt;,
+    mut drone_positions: Local&lt;HashMap&lt;Entity, Vec2&gt;&gt;,
+    base_position: Res&lt;Position&gt;,
+    time: Res&lt;Time&gt;,
+) {
+    let Some(mut orders) = query.get_mut(&amp;srv.key) else {
+        return;
+    };
+
+    orders.for_each(|order| {
+        let DroneRequest { target, speed } = *order.request();
+        let position = drone_positions.entry(order.task_id()).or_insert_with(|| {
+            println!(
+                "Drone #{} taking off from {}, heading to {target}",
+                order.id().seq,
+                **base_position,
+            );
+            **base_position
+        });
+        let dt = time.delta_secs_f64() as f32;
+        match move_to(*position, target, speed, dt) {
+            Ok(_) =&gt; {
+                println!("Drone #{} arrived at {target}", order.id().seq);
+                order.respond(());
+            }
+            Err(new_position) =&gt; {
+                *position = new_position;
+            }
+        }
+    });
+
+    // Remove any old task IDs that are no longer in use
+    drone_positions.retain(|id, _| orders.iter().any(|order| order.id() == *id));
+}</code></pre>
+<h3 id="full-example"><a class="header" href="#full-example">Full Example</a></h3>
+<p>Here is an example that incorporates everything above and also demonstrates how
+continuous systems can be configured in the schedule just like regular Bevy systems.
+Notice the use of <code>.configure(_)</code> when spawning <code>move_base</code> and <code>send_drone</code>.
+This allows us to make sure the base vehicle is up to date when the drone service
+is updated.</p>
+<pre><code class="language-rust no_run noplayground">use crossflow::bevy_app::{App, Update};
+use crossflow::prelude::*;
+
+use bevy_derive::*;
+use bevy_ecs::prelude::*;
+use bevy_time::{Time, TimePlugin};
+use glam::Vec2;
+
+use std::collections::HashMap;
+
+#[derive(Debug, Hash, PartialEq, Eq, Clone, SystemSet)]
+struct MoveBaseVehicle;
+
+fn main() {
+    let mut app = App::new();
+    app.add_plugins((CrossflowExecutorApp::default(), TimePlugin::default()))
+        .insert_resource(Position(Vec2::ZERO));
+
+    let move_base = app.spawn_continuous_service(
+        Update,
+        move_base_vehicle_to_target
+            .with(|mut srv: EntityWorldMut| {
+                // Set the speed component for this service provider
+                srv.insert(Speed(1.0));
+            })
+            .configure(|config| {
+                // Put this service into a system set so that we can order other
+                // services before or after it.
+                config.in_set(MoveBaseVehicle)
+            }),
+    );
+    let send_drone = app.spawn_continuous_service(
+        Update,
+        send_drone_to_target.configure(|config| {
+            // This service depends on side-effects from move_base, so we should
+            // always schedule it afterwards.
+            config.after(MoveBaseVehicle)
+        }),
+    );
+
+    let move_vehicle_to_random_position = move |app: &amp;mut App| {
+        app.world_mut()
+            .command(|commands| commands.request(random_vec2(20.0), move_base).outcome())
+    };
+
+    let launch_drone_to_random_position = move |app: &amp;mut App| {
+        app.world_mut().command(|commands| {
+            let request = DroneRequest {
+                target: random_vec2(20.0),
+                speed: 1.0,
+            };
+            commands.request(request, send_drone).detach();
+        });
+    };
+
+    let mut base_moving = move_vehicle_to_random_position(&amp;mut app);
+    let mut last_launch = std::time::Instant::now();
+    loop {
+        app.update();
+
+        if base_moving.is_available() {
+            // Send the base to a new location
+            base_moving = move_vehicle_to_random_position(&amp;mut app);
+        }
+
+        if last_launch.elapsed() &gt; std::time::Duration::from_secs(1) {
+            launch_drone_to_random_position(&amp;mut app);
+            last_launch = std::time::Instant::now();
+        }
+    }
+}
+
+fn random_vec2(width: f32) -&gt; Vec2 {
+    width * Vec2::new(rand::random::&lt;f32&gt;(), rand::random::&lt;f32&gt;())
+}
+
+#[derive(Resource, Deref, DerefMut)]
+struct Position(Vec2);
+
+#[derive(Component, Deref)]
+struct Speed(f32);
+
+fn move_base_vehicle_to_target(
+    srv: ContinuousService&lt;Vec2, Result&lt;(), ()&gt;&gt;,
+    mut query: ContinuousQuery&lt;Vec2, Result&lt;(), ()&gt;&gt;,
+    speeds: Query&lt;&amp;Speed&gt;,
+    mut base_position: ResMut&lt;Position&gt;,
+    time: Res&lt;Time&gt;,
+) {
+    let Some(mut orders) = query.get_mut(&amp;srv.key) else {
+        // The service provider has been despawned, so this continuous service
+        // can no longer function.
+        return;
+    };
+
+    // Get the oldest active request for this service. Orders will be indexed
+    // from 0 to N-1 from oldest to newest. When an order is completed, all
+    // orders after it will shift down by an index on the next update cycle.
+    let Some(order) = orders.get_mut(0) else {
+        // There are no active requests, so no need to do anything
+        return;
+    };
+
+    let dt = time.delta_secs_f64() as f32;
+    let Ok(speed) = speeds.get(srv.key.provider()) else {
+        // The velocity setting has been taken from the service, so it can no
+        // longer complete requests.
+        order.respond(Err(()));
+        return;
+    };
+
+    let target = *order.request();
+    match move_to(**base_position, target, **speed, dt) {
+        Ok(_) =&gt; {
+            // The vehicle arrived
+            **base_position = target;
+            println!("Base vehicle arrived at {target}");
+            order.respond(Ok(()));
+        }
+        Err(new_position) =&gt; {
+            // The vehicle made progress but did not arrive
+            **base_position = new_position;
+        }
+    }
+}
+
+#[derive(Clone, Copy)]
+struct DroneRequest {
+    target: Vec2,
+    speed: f32,
+}
+
+fn send_drone_to_target(
+    srv: ContinuousService&lt;DroneRequest, ()&gt;,
+    mut query: ContinuousQuery&lt;DroneRequest, ()&gt;,
+    mut drone_positions: Local&lt;HashMap&lt;Entity, Vec2&gt;&gt;,
+    base_position: Res&lt;Position&gt;,
+    time: Res&lt;Time&gt;,
+) {
+    let Some(mut orders) = query.get_mut(&amp;srv.key) else {
+        return;
+    };
+
+    orders.for_each(|order| {
+        let DroneRequest { target, speed } = *order.request();
+        let position = drone_positions.entry(order.task_id()).or_insert_with(|| {
+            println!(
+                "Drone #{} taking off from {}, heading to {target}",
+                order.id().seq,
+                **base_position,
+            );
+            **base_position
+        });
+        let dt = time.delta_secs_f64() as f32;
+        match move_to(*position, target, speed, dt) {
+            Ok(_) =&gt; {
+                println!("Drone #{} arrived at {target}", order.id().seq);
+                order.respond(());
+            }
+            Err(new_position) =&gt; {
+                *position = new_position;
+            }
+        }
+    });
+
+    // Remove any old task IDs that are no longer in use
+    drone_positions.retain(|id, _| orders.iter().any(|order| order.id() == *id));
+}
+
+fn move_to(current: Vec2, target: Vec2, speed: f32, dt: f32) -&gt; Result&lt;(), Vec2&gt; {
+    let dx = f32::max(0.0, speed * dt);
+    let dp = target - current;
+    let distance = dp.length();
+    if distance &lt;= dx {
+        return Ok(());
+    }
+
+    let Some(u) = dp.try_normalize() else {
+        // If dp can't be normalized then it's close to zero, so there's
+        // nowhere to go.
+        return Ok(());
+    };
+
+    return Err(current + u * dx);
+}</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="spawn-async-services.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="output-streams.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="spawn-async-services.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="output-streams.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

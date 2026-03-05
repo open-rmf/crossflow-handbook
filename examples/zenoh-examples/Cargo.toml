@@ -1,0 +1,31 @@
+[package]
+name = "zenoh-examples"
+version = "0.0.7"
+edition = "2024"
+
+[[bin]]
+name = "door-manager"
+path = "src/door_manager.rs"
+
+[[bin]]
+name = "use-door"
+path = "src/use_door.rs"
+
+[dependencies]
+crossflow = { version = "0.0.7", path = "../..", features = ["diagram"] }
+bevy_app = { workspace = true }
+bevy_ecs = { workspace = true }
+bevy_time = { workspace = true }
+futures = { workspace = true }
+schemars = { workspace = true }
+serde = { workspace = true, features = ["derive", "rc"] }
+serde_json = { workspace = true }
+prost = { workspace = true }
+tracing = { workspace = true }
+clap = { workspace = true, features = ["derive"] }
+uuid = { workspace = true, features = ["v4"] }
+zenoh = { workspace = true, features = ["unstable"] }
+zenoh-ext = { workspace = true, features = ["unstable"] }
+
+[build-dependencies]
+prost-build = { workspace = true }

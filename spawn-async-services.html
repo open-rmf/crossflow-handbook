@@ -1,0 +1,593 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Async Services - Crossflow Handbook</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-020e3b3e.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-df95dbe7.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Crossflow Handbook</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="async-services"><a class="header" href="#async-services">Async Services</a></h1>
+<p>We’ve seen how to spawn a <a href="./spawn-services.html#spawn-a-blocking-service">blocking service</a>,
+but blocking services have an important drawback: While a blocking service is running,
+no other systems or services in the <a href="https://bevy-cheatbook.github.io/programming/schedules.html">system schedule</a> can run. This
+allows blocking services to have unfettered instant access to all resources in the
+bevy <a href="https://docs.rs/bevy/latest/bevy/prelude/struct.World.html">World</a>, but long-running blocking services would disrupt the app schedule.
+This does not mean that blocking services should be avoided—they are the fastest
+and most CPU efficient choice for any short-lived service, especially when accessing
+Bevy <a href="https://bevy-cheatbook.github.io/programming/ec.html">Components</a> or <a href="https://bevy.org/learn/quick-start/getting-started/resources/">Resources</a>. Each kind of service fits a
+different shape of usage, so go ahead and use blocking services when they fit.</p>
+<p>When it comes to long-running services, it’s likely that an <strong>async service</strong> is
+what you want. In crossflow, async services allow you to take full advantage of
+the async/await language feature of Rust when implementing a service. For a
+detailed explanation of the language feature you might want to look at
+<a href="https://doc.rust-lang.org/book/ch17-00-async-await.html">the official Rust handbook</a>. Using async services does not
+require a deep understanding of async in Rust, but some peculiarities might make
+more sense if you have a better grasp of it.</p>
+<h3 id="what-is-an-async-service"><a class="header" href="#what-is-an-async-service">What is an async service?</a></h3>
+<p>A normal Bevy app has a system schedule which can be thought of as the main event
+loop of the application. The system schedule is able to run many systems at once
+as long as those systems do not have any read/write conflicts in which world
+resources they need to access. Bevy will automatically identify which systems
+can be run in parallel and run them together unless you specify otherwise.</p>
+<p>Some systems demand exclusive world access, meaning no other systems can run
+alongside it. While this reduces opportunities for parallel processing, it
+empowers the exclusive systems to themselves dynamically run systems whose
+data access requirements are not known when the schedule is first being built.</p>
+<p>The <code>flush_execution</code> system of crossflow drives all the services that need to be
+executed. Since we never know ahead of time which services might need to be run
+or what they will need to acess from the world, <code>flush_execution</code> is an exclusive
+system.</p>
+<p>Inside of <code>flush_execution</code> we will execute any services that are ready to be
+executed—one at a time since we can’t be sure which might have read/write
+conflicts with each other. When we execute a blocking service, we pass the
+request into it and get back the response immediately. We can then pass that
+response message along to its target service, and then immediately execute that
+target service. An arbitrarily long chain of blocking services can all be executed
+within a single run of <code>flush_execution</code>, unless <a href="https://docs.rs/crossflow/latest/crossflow/flush/struct.FlushParameters.html#structfield.flush_loop_limit"><code>flush_loop_limit</code></a>
+is set.</p>
+<p><img src="./assets/figures/async-task-pool.svg" alt="async-task-pool"></p>
+<p>If the blocking service runs for a very long time, the entire system schedule
+would be held up, which could be detrimental to how the application behaves. In
+a GUI application, users would see the window freeze up. In a workflow execution
+application, clients would think that all execution has frozen. This means
+blocking services are not suitable for any service that represents a physical
+process or involves i/o with external resources.</p>
+<p>Fortunately Bevy provides an <a href="https://docs.rs/bevy/latest/bevy/tasks/struct.AsyncComputeTaskPool.html">async task pool</a> that runs
+in parallel to the system schedule and supports <a href="https://doc.rust-lang.org/book/ch17-00-async-await.html">async functions</a>.
+An <strong>async service</strong> task advantage of this by producing a <strong>Future</strong> instead of
+immediately returning a response. Crossflow sends that Future into the async
+task pool to be processed efficiently alongside other async tasks. Once the
+Future has yielded its final response, <code>flush_execution</code> will receive the response
+message and pass it along to the next service in the chain.</p>
+<p>We get two advantages with async services:</p>
+<ul>
+<li>They are processed in the async task pool, allowing them to run in parallel
+to the system schedule, no matter which systems are running at any given time.</li>
+<li>They can use <code>await</code> in their their Future, which is a powerful language feature
+of Rust that allows efficient and ergonomic use of i/o and multi-threading.</li>
+</ul>
+<p>However there are some disadvantages to be mindful of:</p>
+<ul>
+<li>Sending the Future to the async task pool and receiving the response has some
+overhead (albeit relative small in most cases).</li>
+<li>The response of an async service will generally not arrive within the same
+schedule update that the service was activated. This means a chain of <em>N</em> async
+services will typically take at least <em>N</em> schedule updates before finishing.</li>
+<li>Each time the Future of an async service needs to access the world (using its
+<a href="#use-the-async-channel">async channel</a>) it takes up to one whole schedule update
+to get that access.</li>
+</ul>
+<h3 id="spawn-an-async-service"><a class="header" href="#spawn-an-async-service">Spawn an Async Service</a></h3>
+<p>Spawning an async service is similar to <a href="./spawn-services.html#how-to-spawn-a-service">spawning a blocking service</a>,
+except that your function should take in an <code>AsyncService&lt;Request&gt;</code> and be async:</p>
+<pre><code class="language-rust no_run noplayground">async fn trivial_async_service(srv: AsyncService&lt;String&gt;) -&gt; String {
+    return srv.request;
+}</code></pre>
+<p>If your function matches these requirements, then you can spawn it with the exact
+same API as the blocking service:</p>
+<pre><code class="language-rust no_run noplayground">let async_service: Service&lt;String, String&gt; = app.spawn_service(trivial_async_service);</code></pre>
+<p>Notice that even though this is an async service and has some different behavior
+than blocking services under the hood, it is still captured as a <a href="https://docs.rs/crossflow/latest/crossflow/service/struct.Service.html"><code>Service</code></a>.
+Once spawned as a service, blocking and async services will appear exactly the
+same to users.</p>
+<h3 id="await"><a class="header" href="#await">await</a></h3>
+<p>Since async services are defined via async functions, they are able to use Rust’s
+await feature, which is often used for network i/o and communicating between
+parallel threads. Here’s an example of a service that gets the title of a webpage
+based on a URL passed in as the request message:</p>
+<pre><code class="language-rust no_run noplayground">async fn page_title_service(srv: AsyncService&lt;String&gt;) -&gt; Option&lt;String&gt; {
+    let response = trpl::get(&amp;srv.request).await;
+    let response_text = response.text().await;
+    trpl::Html::parse(&amp;response_text)
+        .select_first("title")
+        .map(|title| title.inner_html())
+}</code></pre>
+<p>This example is adapted from <a href="https://doc.rust-lang.org/book/ch17-01-futures-and-syntax.html#defining-the-page_title-function">the Rust handbook</a>.
+Note that this service returns an <code>Option&lt;String&gt;</code> since we can’t guarantee that
+the input URL points to an actual website or that we will successfully retrieve
+its title even if it does.</p>
+<h3 id="use-the-async-channel"><a class="header" href="#use-the-async-channel">Use the Async Channel</a></h3>
+<p>One drawback of using an async service is that it doesn’t have free access to
+the <a href="https://docs.rs/bevy/latest/bevy/prelude/struct.World.html">World</a> (particularly <a href="https://bevy-cheatbook.github.io/programming/ec.html">Components</a> and <a href="https://bevy.org/learn/quick-start/getting-started/resources/">Resources</a>)
+the way a blocking service does. It would be impossible to provide that
+kind of access for something running in the async task pool because any time it
+tries to access data that’s stored in the world, it could encounter a conflict
+with a scheduled system that’s accessing the same data.</p>
+<p>Nevertheless, async services may need to push or pull data into/from the <a href="https://docs.rs/bevy/latest/bevy/prelude/struct.World.html">World</a>
+while they make progress through their async task. To accommodate this, we provide
+async services with a <a href="https://docs.rs/crossflow/latest/crossflow/channel/struct.Channel.html"><code>Channel</code></a> that supports querying or sending
+commands to the <a href="https://docs.rs/bevy/latest/bevy/prelude/struct.World.html">World</a>:</p>
+<pre><code class="language-rust no_run noplayground">/// A component that stores a web page title inside an Entity
+#[derive(Component)]
+struct PageTitle(String);
+
+/// A request that specifies a URL whose page title should be stored inside an Entity
+struct PageTitleRequest {
+    url: String,
+    insert_into: Entity,
+}
+
+/// A service that fetches the page title of a URL and stores that into an Entity.
+async fn insert_page_title(
+    srv: AsyncService&lt;PageTitleRequest&gt;
+) -&gt; Result&lt;(), ()&gt; {
+    let response = trpl::get(&amp;srv.request.url).await;
+    let response_text = response.text().await;
+    let title = trpl::Html::parse(&amp;response_text)
+        .select_first("title")
+        .map(|title| title.inner_html())
+        .ok_or(())?;
+
+    let insert_into = srv.request.insert_into;
+    // Use the async channel to insert a PageTitle component into the entity
+    // specified by the request, then await confirmation that the command is finished.
+    srv.channel.commands(
+        move |commands| {
+            commands.entity(insert_into).insert(PageTitle(title));
+        }
+    )
+        .await;
+
+    Ok(())
+}</code></pre>
+<p>In the above example, the <code>insert_page_title</code> service ends by inserting the result
+of its http request into the component of an entity. This is done by invoking
+<code>srv.channel.command(_)</code> and passing in a <a href="https://doc.rust-lang.org/book/ch13-01-closures.html">closure</a> that says what
+should be done with the Bevy <a href="https://bevy-cheatbook.github.io/programming/commands.html">commands</a>.</p>
+<p>Note that this command will itself be run asynchronously. It will be executed
+the next time that <code>flush_execution</code> is run by the system schedule. If we want
+to make sure our service does not return its response until the command is
+carried out, we should <code>.await</code> the output of <code>srv.channel.command(_)</code>. The
+command will eventually be carried out even if we return without awaiting it,
+but if the next service in the chain assumes the command has already finished
+then you could experience race conditions.</p>
+<blockquote class="blockquote-tag blockquote-tag-warning">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p>
+<p>Each time you await <code>srv.channel</code> it may take up to an entire update cycle of
+the schedule before your response arrives. It’s a good idea to batch as many
+queries or commands as you can before awaiting to avoid wasting update cycles.</p>
+</blockquote>
+<h3 id="async-services-as-bevy-systems"><a class="header" href="#async-services-as-bevy-systems">Async Services as Bevy Systems</a></h3>
+<p>It’s been mentioned that the task (a.k.a. Future) of an async service can only
+access the Bevy <a href="https://docs.rs/bevy/latest/bevy/prelude/struct.World.html">World</a> through the async channel that it’s provided with.
+However, prior to its task being spawned, an async service does have a way to
+immediately access the entire <a href="https://docs.rs/bevy/latest/bevy/prelude/struct.World.html">World</a>. This is useful when there is some
+data you know your task will need. You can query it from the <a href="https://docs.rs/bevy/latest/bevy/prelude/struct.World.html">World</a> at
+no cost as soon as your async service is activated.</p>
+<p>However there is a catch: Bevy system parameters (such as <a href="https://bevy-cheatbook.github.io/programming/queries.html"><code>Query</code></a> and
+<a href="https://bevy.org/learn/quick-start/getting-started/resources/"><code>Res</code></a>) are not compatible with the <code>async fn</code> syntax that is commonly
+used to define async functions. The incompatibility is related to a logical
+conflict between the way Bevy manages borrows of <a href="https://docs.rs/bevy/latest/bevy/prelude/struct.World.html">World</a> data and the way
+<code>async fn</code> creates a portable state machine that can be executed by an async
+task pool. The details of this conflict aren’t important for using crossflow,
+but suffice it to say you can’t use most Bevy system params and <code>async fn</code> in
+the same function.</p>
+<p>But there is a workaround! You can create an async function without using the
+<code>async fn</code> syntax. You can use the regular <code>fn</code> syntax and use a return type of
+<code>impl Future&lt;Output = Response&gt;</code>:</p>
+<pre><code class="language-rust no_run noplayground">#[derive(Clone, Component, Deref)]
+struct Url(String);
+
+use std::future::Future;
+fn fetch_page_title(
+    srv: AsyncService&lt;Entity&gt;,
+    url: Query&lt;&amp;Url&gt;,
+) -&gt; impl Future&lt;Output = Result&lt;String, ()&gt;&gt; + use&lt;&gt; {
+    // Use a query to get the Url component of this entity
+    let url = url.get(srv.request).cloned();
+
+    async move {
+        // Make sure the query for the Url component was successful
+        let url = url.map_err(|_| ())?.0;
+
+        // Fetch the page title of the website stored in the Url component of
+        // the requested entity.
+        let response = trpl::get(&amp;url).await;
+        let response_text = response.text().await;
+        trpl::Html::parse(&amp;response_text)
+            .select_first("title")
+            .map(|title| title.inner_html())
+            .ok_or(())
+    }
+}</code></pre>
+<p>At the start of your function it will behave just like a normal Bevy system.
+Your arguments can be any Bevy system parameters that you’d like, and you can
+use them freely in the initial lines of your function. But to satisfy the
+signature of the function, you eventually have to return something that implements
+the <code>Future&lt;Output = Response&gt;</code> trait.</p>
+<p>The easiest way to create a <code>Future</code> is with an <a href="https://rust-lang.github.io/async-book/03_async_await/01_chapter.html"><code>async</code> block</a>.
+That block will produce an anonymous data structure that implements <code>Future&lt;Output=Response&gt;</code>
+where <code>Response</code> will be whatever value the block yields. By ending our function
+with an <code>async move { ... }</code>, it will behave like a regular blocking function in
+the start and end as an async function. From the outside, it is indistinguishable
+from an async function.</p>
+<blockquote class="blockquote-tag blockquote-tag-tip">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
+<p>If you need your async service to start by querying the World, it’s a good idea
+to always follow this template exactly:</p>
+<pre><code class="language-rust no_run noplayground">fn my_async_service(
+    srv: AsyncService&lt;Request&gt;,
+    /* ... Bevy System Params Go Here ... */
+) -&gt; impl Future&lt;Output = Response&gt; + use&lt;&gt; {
+    /* ... Use Bevy System params, cloning data as needed ... */
+    async move {
+        /* ... Perform async operations ... */
+    }
+}</code></pre>
+<p>You can deviate from this template if you know what you are doing, but first
+make sure you have a sound understanding of how async works in Rust or else
+you might get unexpected behavior.</p>
+</blockquote>
+<h3 id="full-example"><a class="header" href="#full-example">Full Example</a></h3>
+<p>Here is an example of an async service that uses everything discussed in this
+chapter.</p>
+<blockquote class="blockquote-tag blockquote-tag-tip">
+<p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p>
+<p>This example shows how a <a href="https://tokio.rs/">tokio</a> runtime can be used with
+an async service. Crossflow does not use tokio itself, since Bevy’s async
+execution is based on <a href="https://github.com/smol-rs/smol">smol</a> instead.</p>
+<p>Many async functions in the Rust ecosystem depend on a tokio runtime, so this
+example may help you find ways to incorporate tokio into your async services.</p>
+</blockquote>
+<pre><code class="language-rust no_run noplayground">use crossflow::bevy_app::App;
+use crossflow::prelude::*;
+
+use bevy_derive::*;
+use bevy_ecs::prelude::*;
+use clap::Parser;
+use std::{future::Future, sync::Arc};
+use tokio::runtime::Runtime;
+
+/// Program that demonstrates an async service in crossflow
+#[derive(Parser, Debug)]
+#[command(version, about)]
+struct Args {
+    /// Url that we should fetch a page title from
+    url: String,
+}
+
+fn main() {
+    let args = Args::parse();
+    let mut app = App::new();
+    app.add_plugins(CrossflowExecutorApp::default());
+
+    let service = app.spawn_service(update_page_title);
+
+    let entity = app.world_mut().spawn(Url(args.url)).id();
+
+    let mut outcome = app
+        .world_mut()
+        .command(|commands| commands.request(entity, service).outcome());
+
+    // Create a tokio runtime and drive it on another thread
+    let (finish, finished) = tokio::sync::oneshot::channel();
+    let rt = Arc::new(tokio::runtime::Runtime::new().unwrap());
+    app.world_mut()
+        .insert_resource(TokioRuntime(Arc::clone(&amp;rt)));
+    let tokio_thread = std::thread::spawn(move || {
+        let _ = rt.block_on(finished);
+    });
+
+    let start = std::time::Instant::now();
+    let time_limit = std::time::Duration::from_secs(5);
+    while std::time::Instant::now() - start &lt; time_limit {
+        if let Some(response) = outcome.try_recv() {
+            match response {
+                Ok(_) =&gt; {
+                    let title = app.world().get::&lt;PageTitle&gt;(entity).unwrap();
+                    println!("Fetched title: {}", **title);
+                }
+                Err(err) =&gt; {
+                    println!("Error encountered while trying to update title: {err}");
+                }
+            }
+
+            let _ = finish.send(());
+            let _ = tokio_thread.join();
+            return;
+        }
+
+        app.update();
+    }
+
+    panic!("Service failed to run within time limit of {time_limit:?}");
+}
+
+/// A component that stores a web page title inside an Entity.
+#[derive(Component, Deref)]
+struct PageTitle(String);
+
+/// A component that stores what url is assigned to an Entity.
+#[derive(Clone, Component, Deref)]
+struct Url(String);
+
+/// A resource that provides access to a tokio runtime
+#[derive(Resource, Deref)]
+struct TokioRuntime(Arc&lt;Runtime&gt;);
+
+/// A service that checks the Url assigned to an entity and then updates the page
+/// title set for that entity.
+fn update_page_title(
+    srv: AsyncService&lt;Entity&gt;,
+    url: Query&lt;&amp;Url&gt;,
+    runtime: Res&lt;TokioRuntime&gt;,
+) -&gt; impl Future&lt;Output = Result&lt;(), ()&gt;&gt; + use&lt;&gt; {
+    // Use a query to get the Url component of this entity
+    let url = url.get(srv.request).cloned();
+    let rt = Arc::clone(&amp;**runtime);
+
+    async move {
+        // Make sure the query for the Url component was successful
+        let url = url.map_err(|_| ())?.0;
+
+        // Fetch the page title of the website stored in the Url component of
+        // the requested entity. This is run inside a tokio runtime because the
+        // trpl library uses reqwest, which is a tokio-based http implementation.
+        let title = rt
+            .spawn(async move {
+                let response = trpl::get(&amp;url).await;
+                let response_text = response.text().await;
+                trpl::Html::parse(&amp;response_text)
+                    .select_first("title")
+                    .map(|title| title.inner_html())
+                    .ok_or(())
+            })
+            .await
+            .map_err(|_| ())??;
+
+        let entity = srv.request;
+        srv.channel
+            .commands(move |commands| {
+                commands.entity(entity).insert(PageTitle(title));
+            })
+            .await;
+
+        Ok(())
+    }
+}</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="spawn-services.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="spawn-continuous-services.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="spawn-services.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="spawn-continuous-services.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
